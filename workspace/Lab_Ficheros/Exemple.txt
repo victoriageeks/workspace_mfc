@@ -1,0 +1,5 @@
+Tarragona;132199;57,9;
+Altafulla;4988;7,0;
+Vila-Seca;21923;21,6;
+Els Pallaresos;4479;5,1;
+Salou;26558;15,1;

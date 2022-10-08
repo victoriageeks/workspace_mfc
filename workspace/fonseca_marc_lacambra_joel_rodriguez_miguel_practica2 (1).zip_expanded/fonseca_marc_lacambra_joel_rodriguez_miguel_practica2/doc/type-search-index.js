@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","u":"allclasses-index.html"},{"p":"Aplicacio","l":"Aplicacio"},{"p":"Dades","l":"CjtRecursosDinamica"},{"p":"Dades","l":"CjtRecursosEstatica"},{"p":"Dades","l":"DadesAcces"},{"p":"Dades","l":"Data"},{"p":"Dades","l":"Node"},{"p":"Dades","l":"TADcjtRecursos"}];updateSearchResults();

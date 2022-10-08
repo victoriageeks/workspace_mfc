@@ -1,0 +1,5 @@
+Tarragona: 2283.2297 hab/km2
+Altafulla: 712.5714 hab/km2
+Vila-Seca: 1014.9537 hab/km2
+Els Pallaresos: 878.2353 hab/km2
+Salou: 1758.8079 hab/km2
