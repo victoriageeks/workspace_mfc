@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"grafics","c":"FinestraPrincipal","l":"FinestraPrincipal()","u":"%3Cinit%3E()"}];updateSearchResults();
