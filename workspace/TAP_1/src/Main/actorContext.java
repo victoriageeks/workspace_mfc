@@ -3,7 +3,10 @@ package Main;
 import java.util.HashMap;
 import java.util.Map;
 
-public class actorContext {
+import Actores.Actor;
+
+
+public class actorContext implements Runnable{
 	private static actorContext actorContext = new actorContext();
 	private Map<String, Actor> map = new HashMap<>();
 	
@@ -14,14 +17,20 @@ public class actorContext {
 	}
 	
 	public actorProxy spawnActor (String name, Actor actor) {
-		actorProxy actorX = new actorProxy(name);
-		
+		actorProxy actorProxy = new actorProxy(actor);
+		Thread t = new Thread(actor);
+		t.start();
+
 		map.put(name, actor);
 		
-		
-		return actorX;
+		return actorProxy;
 	}
 	// guardar en hash el actor creado
+
+	@Override
+	public void run() {}
+
+	
 	
 	// lookUp (string name) {}
 	//buscar en hash el actor con name

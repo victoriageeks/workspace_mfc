@@ -1,4 +1,4 @@
-package Main;
+package Messages;
 
 public interface interfaceMessage {
 
