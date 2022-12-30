@@ -1,27 +1,34 @@
 package Actores;
 import java.util.concurrent.*;
 
-import Messages.Message;
-public class HelloWorldActor implements Actor{
+import Messages.*;
+public class HelloWorldActor implements ActorInstance{
 
-	private BlockingQueue<Message> queue = new LinkedBlockingQueue<>();
-	
-	public void sendToQueue(Message message) {
+	private BlockingQueue<InterfaceMessage> queueMessage = new LinkedBlockingQueue<>();
+	private BlockingQueue<ActorInstance> queueSenders = new LinkedBlockingQueue<>();
+
+	// receives a message
+	public void sendToQueue(ActorInstance actor, InterfaceMessage message) {
 		try {
-			queue.put(message);
+			queueMessage.put(message);
+			if (actor != null) {
+				queueSenders.put(actor);
+			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
+	
+	// writes it in System.out.
 	@Override
 	public void processMessage() {
-		Message message = queue.poll();
+		InterfaceMessage message = queueMessage.poll();
+		ActorInstance actor = queueSenders.poll();
 		if (message != null) { 
-			System.out.println(message.getMessage());
+			System.out.println(((Message)message).getMessage());
 		}
-		
-		
 	}
+	
 	@Override
 	public void run() {
 		while (true) {
@@ -29,7 +36,6 @@ public class HelloWorldActor implements Actor{
 		}
 	}
 
-
-	
-
+	@Override
+	public void send(InterfaceMessage message) {}
 }

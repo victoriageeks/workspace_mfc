@@ -1,21 +1,23 @@
 package Messages;
 
-import Actores.Actor;
+import Actores.ActorInstance;
 
-public class Message {
-	private Actor sender;
+public class Message implements InterfaceMessage{
+	private ActorInstance sender;
 	private String message;
 	
-	public Message (Actor sender, String message) {
+	/* a Message includes a from field which is an Actor reference 
+	   (used to reply to that actor) and a text message (String) */
+	public Message (ActorInstance sender, String message) {
 		this.sender = sender;
 		this.message = message;
 	}
 
-	public Actor getSender() {
+	public ActorInstance getSender() {
 		return sender;
 	}
 
-	public void setSender(Actor sender) {
+	public void setSender(ActorInstance sender) {
 		this.sender = sender;
 	}
 
