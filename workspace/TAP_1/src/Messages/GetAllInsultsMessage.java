@@ -1,12 +1,32 @@
-    package Messages;
+package Messages;
+
+import java.util.LinkedList;
 
 import Actores.ActorInstance;
 
-public class GetAllInsultsMessage extends Message{
+public class GetAllInsultsMessage implements InterfaceMessage{
 
-	public GetAllInsultsMessage(ActorInstance sender, String message) {
-		super(sender, message);
-		// TODO Auto-generated constructor stub
+	LinkedList<InterfaceMessage> insultList =  new LinkedList<>();
+	private ActorInstance sender;
+
+	public GetAllInsultsMessage() {
+		
+	}
+	
+	public void add (InterfaceMessage message) {
+		insultList.add(message);
 	}
 
+	@Override
+	public void setSender(ActorInstance sender) {
+		this.sender = sender;
+		
+	}
+
+	@Override
+	public ActorInstance getSender() {
+		return sender;
+	}
+
+	
 }

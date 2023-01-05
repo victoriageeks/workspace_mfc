@@ -7,7 +7,7 @@ public interface ActorInstance extends Runnable{
 	public void send(InterfaceMessage message);
 	
 	// an Actor has methods to send messages to its queue
-	public void sendToQueue(ActorInstance actor, InterfaceMessage message);
+	public void sendToQueue(ActorInstance sender, InterfaceMessage message);
 	
 	// a process method that reacts to messages in that queue
 	public void processMessage();

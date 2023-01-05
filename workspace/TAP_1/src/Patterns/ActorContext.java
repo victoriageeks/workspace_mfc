@@ -1,13 +1,12 @@
-package Main;
+package Patterns;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import Actores.ActorInstance;
-import Actores.ActorProxy;
+import Actores.*;
 
 public class ActorContext implements Runnable{
 	private static ActorContext actorContext = new ActorContext();
-	private Map<String, ActorInstance> map = new HashMap<>();
+	private Map<ActorProxy, ActorInstance> map = new HashMap<>();
 	
 	private ActorContext() {}
 	
@@ -17,21 +16,31 @@ public class ActorContext implements Runnable{
 	}
 	
 	// ActorContext.lookup(name)
-	public ActorInstance lookUp (String name) {
-		ActorInstance actor = map.get(name);
+	public ActorProxy lookUp (String name) {
+		ActorProxy actorProxy;
+		Iterator <ActorProxy> it = map.keySet().iterator();
 		
-		return actor;
+		while (it.hasNext()) 
+		{
+			actorProxy = it.next();
+			if (name.equals(actorProxy.getName()))
+			{
+				return actorProxy;
+			}
+		}
+		
+		return null;
 	}
 		
 	// ActorContext.getNames()
 	public String[] getNames() {
 		String[] names = new String[map.size()];
-		Iterator <String> it = map.keySet().iterator();
+		Iterator <ActorProxy> it = map.keySet().iterator();
 		int i = 0;
 		
 		while (it.hasNext()) 
 		{
-			names[i] = it.next();
+			names[i] = it.next().getName();
 			i++;
 		}
 		
@@ -43,10 +52,20 @@ public class ActorContext implements Runnable{
 	   that will listen to messages for this actor. */
 	public ActorProxy spawnActor (String name, ActorInstance actor) {
 		ActorProxy actorProxy = new ActorProxy(actor, name);
+		
+		if (actor instanceof RingActor)
+		{
+			RingActor.add(actorProxy);
+		}
+		if (actor instanceof PingPongActor)
+		{
+			PingPongActor.add(actorProxy);
+		}
+		
+		map.put(actorProxy, actor);
+		
 		Thread t = new Thread(actor);
 		t.start();
-
-		map.put(name, actor);
 		
 		return actorProxy;
 	}
