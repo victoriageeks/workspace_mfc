@@ -16,7 +16,7 @@ public class FireWallDecorator implements ActorInstance {
 	private BlockingQueue<InterfaceMessage> queueMessage = new LinkedBlockingQueue<>();
 	private BlockingQueue<ActorInstance> queueSenders = new LinkedBlockingQueue<>();
 	ActorInstance actor;
-	private boolean exitThread = false, actorFound;
+	private boolean exitThread = false, actorFound = false;
 	
 	public FireWallDecorator (ActorInstance actor)
 	{
@@ -52,7 +52,7 @@ public class FireWallDecorator implements ActorInstance {
 				ActorContext context = ActorContext.getInstance();
 				String[] names = context.getNames();
 				
-				for (int i = 0; i < names.length; i++)
+				for (int i = 0; i < names.length && !actorFound; i++)
 				{
 					if (context.lookUp(names[i]).getActor() == sender)
 					{

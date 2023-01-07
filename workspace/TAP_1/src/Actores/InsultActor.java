@@ -36,11 +36,18 @@ public class InsultActor implements ActorInstance{
 			   Message to the requesting Actor or Proxy entity */
 			else if (message instanceof GetInsultMessage) {
 				int random = (int)(Math.random()*50+1);
-				random = random % insultList.size();
-				String randomMessage = insultList.get(random);
+				if (insultList.size() == 0){
+					InterfaceMessage newMessage = new Message (sender, "");
+					send(newMessage);
+				}
+				else{
+					random = random % insultList.size();
+					String randomMessage = insultList.get(random);
 				
-				InterfaceMessage newMessage = new Message (sender, randomMessage);
-				send(newMessage);
+					InterfaceMessage newMessage = new Message (sender, randomMessage);
+					send(newMessage);
+				}
+				
 			}
 			else if (message instanceof GetAllInsultsMessage) { 
 				

@@ -17,11 +17,15 @@ public class RingActor implements ActorInstance{
 	
 	private static LinkedList<ActorProxy> listProxy = new LinkedList<ActorProxy>();
 	private static long start, end;
-	private static int contador = 0;
+	private static int contador = 0, maxContador = 100;
 	
 	private int position;
 	
-
+	public static void setContador(int number){
+		contador = 0;
+		listProxy.clear();
+		maxContador = number;
+	}
 	
 	public static void add(ActorProxy proxy)
 	{
@@ -51,7 +55,7 @@ public class RingActor implements ActorInstance{
 				if (this == listProxy.getFirst().getActor())
 				{
 					end = System.nanoTime();
-					System.out.println("Tiempo en dar 100 vueltas al anillo: "+Float.parseFloat(""+(end-start))/1000000+"ms");
+					System.out.println("Tiempo en dar "+maxContador+" vueltas al anillo: "+Float.parseFloat(""+(end-start))/1000000+"ms\n");
 				}
 				if (!(this == listProxy.getLast().getActor()))
 				{
@@ -71,7 +75,7 @@ public class RingActor implements ActorInstance{
 				{
 					contador++;
 					
-					if (contador == 100) {
+					if (contador == maxContador) {
 						InterfaceMessage newMessage = new QuitMessage();
 						newMessage.setSender(listProxy.getFirst());
 						//System.out.println("Vuelta "+contador+": Actor "+(position+1)+" envia mensaje a Actor 1 y acaba");

@@ -53,7 +53,11 @@ public class PingPongActor implements ActorInstance{
 				if (this == listProxy.getFirst().getActor()){
 					end = System.nanoTime();
 					System.out.println("Tiempo en finalizar el PingPong: "+Float.parseFloat(""+(end-start))/1000000+"ms \tMensages enviados: "+messagesSent);
+					firstTime = true;
+					messagesSent = 0;
+					listProxy.clear();
 				}
+				
 				exitThread = true;
 			}
 			
@@ -67,7 +71,7 @@ public class PingPongActor implements ActorInstance{
 				randomValue = rand.nextInt() % 2;
 				if (randomValue == 1) contador++;
 				
-				if (contador == 30){
+				if (contador == 20){
 					InterfaceMessage newMessage = new QuitMessage();
 					newMessage.setSender(listProxy.getFirst());
 					send(newMessage);
