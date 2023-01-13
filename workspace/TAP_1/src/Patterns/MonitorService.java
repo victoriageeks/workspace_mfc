@@ -3,6 +3,11 @@ package Patterns;
 import java.util.*;
 import Actores.*;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class MonitorService 
 {
 	private Map<String, ActorInstance> map = new HashMap<>();

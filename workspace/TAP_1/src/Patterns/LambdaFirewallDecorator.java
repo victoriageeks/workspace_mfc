@@ -1,5 +1,8 @@
 package Patterns;
 
-public class LambdaFirewallDecorator {
-
-}
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
+public class LambdaFirewallDecorator {}

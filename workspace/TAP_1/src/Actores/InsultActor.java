@@ -5,6 +5,11 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import Messages.*;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class InsultActor implements ActorInstance{
 	private LinkedList<String> insultList = new LinkedList<>();
 	private BlockingQueue<InterfaceMessage> queueMessage = new LinkedBlockingQueue<>();
@@ -19,6 +24,13 @@ public class InsultActor implements ActorInstance{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void send(InterfaceMessage message) {
+		ActorInstance sender = ((Message)message).getSender();
+		sender.sendToQueue(sender, message);
+		
 	}
 	
 	// accepting three messages
@@ -72,12 +84,4 @@ public class InsultActor implements ActorInstance{
 			processMessage();
 		}
 	}
-
-	@Override
-	public void send(InterfaceMessage message) {
-		ActorInstance sender = ((Message)message).getSender();
-		sender.sendToQueue(sender, message);
-		
-	}
-
 }

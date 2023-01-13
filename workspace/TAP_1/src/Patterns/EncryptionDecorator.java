@@ -1,5 +1,8 @@
 package Patterns;
 
-public class EncryptionDecorator {
-	
-}
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
+public class EncryptionDecorator {}

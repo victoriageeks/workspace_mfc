@@ -1,5 +1,8 @@
 package Patterns;
 
-public class ActorListener {
-
-}
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
+public class ActorListener {}

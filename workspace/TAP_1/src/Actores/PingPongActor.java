@@ -8,6 +8,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 import Messages.*;
 import Patterns.*;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class PingPongActor implements ActorInstance{
 	
 	
@@ -23,14 +28,6 @@ public class PingPongActor implements ActorInstance{
 	private static boolean firstTime = true;
 	private static int messagesSent = 0;
 	
-
-	
-	public static void add(ActorProxy proxy)
-	{
-		listProxy.add(proxy);
-		
-	}
-	
 	// receives a message
 	public void sendToQueue(ActorInstance proxy, InterfaceMessage message) {
 		try {
@@ -39,6 +36,12 @@ public class PingPongActor implements ActorInstance{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void send(InterfaceMessage message) {
+		ActorInstance sender = message.getSender();
+		sender.sendToQueue(sender, message);
 	}
 	
 	// accepting three messages
@@ -57,7 +60,6 @@ public class PingPongActor implements ActorInstance{
 					messagesSent = 0;
 					listProxy.clear();
 				}
-				
 				exitThread = true;
 			}
 			
@@ -103,11 +105,14 @@ public class PingPongActor implements ActorInstance{
 			processMessage();
 		}
 	}
-
-	@Override
-	public void send(InterfaceMessage message) {
-		ActorInstance sender = message.getSender();
-		sender.sendToQueue(sender, message);
+	
+	/**
+	 * Metodo que añade un proxy a la lista
+	 * @param proxy
+	 */
+	public static void add(ActorProxy proxy)
+	{
+		listProxy.add(proxy);
+		
 	}
-
 }

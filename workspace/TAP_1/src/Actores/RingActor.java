@@ -8,6 +8,11 @@ import java.util.concurrent.TimeUnit;
 import Messages.*;
 import Patterns.*;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class RingActor implements ActorInstance{
 	
 	
@@ -21,18 +26,6 @@ public class RingActor implements ActorInstance{
 	
 	private int position;
 	
-	public static void setContador(int number){
-		contador = 0;
-		listProxy.clear();
-		maxContador = number;
-	}
-	
-	public static void add(ActorProxy proxy)
-	{
-		listProxy.add(proxy);
-		
-	}
-	
 	// receives a message
 	public void sendToQueue(ActorInstance proxy, InterfaceMessage message) {
 		try {
@@ -41,6 +34,13 @@ public class RingActor implements ActorInstance{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void send(InterfaceMessage message) {
+		ActorInstance sender = message.getSender();
+		sender.sendToQueue(sender, message);
+		
 	}
 	
 	// accepting three messages
@@ -108,12 +108,23 @@ public class RingActor implements ActorInstance{
 			processMessage();
 		}
 	}
-
-	@Override
-	public void send(InterfaceMessage message) {
-		ActorInstance sender = message.getSender();
-		sender.sendToQueue(sender, message);
-		
+	
+	/**
+	 * Metodo que añade un proxy a la lista
+	 * @param proxy
+	 */
+	public static void add(ActorProxy proxy)
+	{
+		listProxy.add(proxy);
 	}
-
+	
+	/**
+	 * Setter del contador de vueltas
+	 * @param number
+	 */
+	public static void setContador(int number){
+		contador = 0;
+		listProxy.clear();
+		maxContador = number;
+	}
 }

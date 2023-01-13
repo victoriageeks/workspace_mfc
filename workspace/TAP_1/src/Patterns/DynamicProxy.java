@@ -1,5 +1,8 @@
 package Patterns;
 
-public class DynamicProxy {
-
-}
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
+public class DynamicProxy {}

@@ -5,8 +5,13 @@ import Messages.*;
 import Patterns.*;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Marc Fpnseca y Joel Lacambra
+ *
+ */
 public class UnitTests {
-	
+
 	@Test
 	public void testActorContext(){
 		ActorContext context1 = ActorContext.getInstance();

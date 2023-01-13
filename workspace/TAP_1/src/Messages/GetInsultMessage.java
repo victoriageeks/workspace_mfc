@@ -2,13 +2,19 @@ package Messages;
 
 import Actores.ActorInstance;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class GetInsultMessage implements InterfaceMessage{
 	
 	private ActorInstance sender;
-	public GetInsultMessage() {
 	
-		
-	}
+	/**
+	 * Constructor de GetInsultMessage
+	 */
+	public GetInsultMessage() {}
 
 	@Override
 	public void setSender(ActorInstance sender) {

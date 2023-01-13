@@ -1,20 +1,24 @@
 package InterficieGrafica;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class PingPong extends javax.swing.JPanel {
+
+	private static final long serialVersionUID = 1L;
+	
 	private final Controlador c;
 	private int i = 0;
 	
+	/**
+	 * Constructor de PingPong
+	 */
     public PingPong() {
         initComponents();
         c = new Controlador();
-    } 
-
-    private void StartPinPongBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                
-        String name = "PingPong "+(++i);
-        String tipo = "PingPong";
-        c.crearActor(name, tipo, 0, "");
-        
-    } 
+    }
 
    private void initComponents() {
 
@@ -72,8 +76,17 @@ public class PingPong extends javax.swing.JPanel {
             .addComponent(panelDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>                        
-
-
+   
+   /**
+    * Metodo que se activa al presionar StartPingPong y pone en march el PingPong
+    * @param evt
+    */
+   private void StartPinPongBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                
+       String name = "PingPong "+(++i);
+       String tipo = "PingPong";
+       c.crearActor(name, tipo, 0, "");
+   } 
+   
     // Variables declaration - do not modify                     
     private javax.swing.JLabel MensageBtn;
     private javax.swing.JButton StartPinPongBtn;

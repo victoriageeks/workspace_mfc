@@ -4,11 +4,23 @@ import Actores.*;
 import Patterns.*;
 import Messages.*;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class Controlador {
 	ActorContext context = ActorContext.getInstance();
     ActorProxy proxy;
     private static boolean creado = false;
 
+    /**
+     * Metodo que crea un actor nuevo
+     * @param name
+     * @param tipo
+     * @param number
+     * @param message
+     */
     public void crearActor(String name, String tipo, int number, String message) {
 	    switch(tipo) {
 	        case "PingPong":       
@@ -78,6 +90,10 @@ public class Controlador {
         }
     }
     
+    /**
+     * Metodo que devuelve la lista de actores creados
+     * @return - lista
+     */
     public String[] listarActores (){
         String[] names = context.getNames();
         String[] actores = new String[names.length];
@@ -86,11 +102,7 @@ public class Controlador {
         {
             actores[i] = ""+names[i]+" tipo "+context.lookUp(names[i]).getActor().toString();
         }
-        
+   
         return actores;
-        
-        
-        
-        
     }
 }

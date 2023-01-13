@@ -1,12 +1,21 @@
 package InterficieGrafica;
+
 import java.awt.BorderLayout;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class Insult extends javax.swing.JPanel {
 
-    /**
-     * Creates new form HelloWorldActor
-     */
+	private static final long serialVersionUID = 1L;
+	
 	private final Controlador c;
+	
+	/**
+	 * Constructor de Insult
+	 */
     public Insult() {
         initComponents();
         c = new Controlador();
@@ -116,12 +125,15 @@ public class Insult extends javax.swing.JPanel {
         );
     }// </editor-fold>                     
 
+    /**
+     * Metodo para cambiar el panel dinamico de InsultActor con informacion del Insult
+     * @param evt
+     */
     private void AddInsultActionPerformed(java.awt.event.ActionEvent evt) {                                          
        
        AddInsult ai = new AddInsult();
        ai.setSize(434, 161);
        ai.setLocation(0, 0); 
-       
        
        addInsultPanel.removeAll();
        addInsultPanel.add(ai, BorderLayout.CENTER);
@@ -129,12 +141,20 @@ public class Insult extends javax.swing.JPanel {
        addInsultPanel.repaint(); 
     }  
 
+    /**
+     * Metodo que se activa al presionar "GetInsultMessage" y devuelve un mensaje random
+     * @param evt
+     */
     private void GetInsultMessageActionPerformed(java.awt.event.ActionEvent evt) {                                                 
     	String name = "InsultActor";
         String tipo = "getInsult";
         c.crearActor(name, tipo, 0, "");
     }                                        
 
+    /**
+     * Metodo que se activa al presionar "GetAllInsultMessage" y devuelve la lista de todos los mensajes creados
+     * @param evt
+     */
     private void GetAllInsultsMessageActionPerformed(java.awt.event.ActionEvent evt) {                                                     
     	String name = "InsultActor";
         String tipo = "getAllInsult";

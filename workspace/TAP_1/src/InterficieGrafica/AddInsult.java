@@ -1,17 +1,26 @@
 package InterficieGrafica;
 import java.awt.event.KeyEvent;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class AddInsult extends javax.swing.JPanel {
-
-    private String insult;
+	
+	private static final long serialVersionUID = 1L;
+	
+	private String insult;
     private final Controlador c;
-    private static int i = 0;
     
+    /**
+     * Constructor de AddInsult
+     */
     public AddInsult() {
         initComponents();
         c = new Controlador();
     }
-
+    
     @SuppressWarnings("unchecked")                        
     private void initComponents() {
 
@@ -72,6 +81,10 @@ public class AddInsult extends javax.swing.JPanel {
         );
     }// </editor-fold>                        
 
+    /**
+     * Metodo que se activa al presionar "ENTER", se añade un insulto dentro de la lista
+     * @param evt
+     */
     private void MessageKeyPressed(java.awt.event.KeyEvent evt) {                                   
         if (evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
@@ -84,8 +97,7 @@ public class AddInsult extends javax.swing.JPanel {
         }
 
     }                                  
-
-
+    
     // Variables declaration - do not modify                     
     private javax.swing.JTextArea Message;
     private javax.swing.JLabel WriteLabel;

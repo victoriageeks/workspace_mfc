@@ -11,6 +11,11 @@ import Messages.InterfaceMessage;
 import Messages.Message;
 import Messages.QuitMessage;
 
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class FireWallDecorator implements ActorInstance {
 
 	private BlockingQueue<InterfaceMessage> queueMessage = new LinkedBlockingQueue<>();
@@ -18,6 +23,10 @@ public class FireWallDecorator implements ActorInstance {
 	ActorInstance actor;
 	private boolean exitThread = false, actorFound = false;
 	
+	/**
+	 * Constructor de FireWallDecorator
+	 * @param actor
+	 */
 	public FireWallDecorator (ActorInstance actor)
 	{
 		this.actor = actor;
@@ -33,6 +42,12 @@ public class FireWallDecorator implements ActorInstance {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void send(InterfaceMessage message) {
+    	ActorInstance sender = message.getSender();
+		actor.sendToQueue(sender, message);
 	}
 
 	@Override
@@ -65,7 +80,6 @@ public class FireWallDecorator implements ActorInstance {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
     @Override
@@ -74,11 +88,4 @@ public class FireWallDecorator implements ActorInstance {
 			processMessage();
 		}
 	}
-    
-    @Override
-	public void send(InterfaceMessage message) {
-    	ActorInstance sender = message.getSender();
-		actor.sendToQueue(sender, message);
-	}
-
 }

@@ -1,7 +1,12 @@
 package Actores;
 import java.util.concurrent.*;
-
 import Messages.*;
+
+/**
+ * 
+ * @author Marc Fonseca y Joel Lacambra
+ *
+ */
 public class HelloWorldActor implements ActorInstance{
 
 	private BlockingQueue<InterfaceMessage> queueMessage = new LinkedBlockingQueue<>();
@@ -23,6 +28,9 @@ public class HelloWorldActor implements ActorInstance{
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void send(InterfaceMessage message) {}
 	
 	// writes it in System.out.
 	@Override
@@ -51,7 +59,4 @@ public class HelloWorldActor implements ActorInstance{
 			processMessage();
 		}
 	}
-
-	@Override
-	public void send(InterfaceMessage message) { }
 }
