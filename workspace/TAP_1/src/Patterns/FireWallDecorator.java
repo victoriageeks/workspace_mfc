@@ -16,12 +16,9 @@ import Messages.QuitMessage;
  * @author Marc Fonseca y Joel Lacambra
  *
  */
-public class FireWallDecorator implements ActorInstance {
+public class FireWallDecorator extends DecoratorActor {
 
-	private BlockingQueue<InterfaceMessage> queueMessage = new LinkedBlockingQueue<>();
-	private BlockingQueue<ActorInstance> queueSenders = new LinkedBlockingQueue<>();
-	ActorInstance actor;
-	private boolean exitThread = false, actorFound = false;
+	boolean actorFound = false;
 	
 	/**
 	 * Constructor de FireWallDecorator
@@ -29,63 +26,24 @@ public class FireWallDecorator implements ActorInstance {
 	 */
 	public FireWallDecorator (ActorInstance actor)
 	{
-		this.actor = actor;
-		Thread t = new Thread(actor);
-		t.start();
-	}
-	
-	@Override
-	public void sendToQueue(ActorInstance proxy, InterfaceMessage message) {
-		try {
-			queueMessage.put(message);
-			queueSenders.put(proxy);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Override
-	public void send(InterfaceMessage message) {
-    	ActorInstance sender = message.getSender();
-		actor.sendToQueue(sender, message);
+		super(actor);
 	}
 
+	
 	@Override
-	public void processMessage() {
+	public void sendToQueue(ActorInstance sender, InterfaceMessage message) {
+		ActorContext context = ActorContext.getInstance();
+		String[] names = context.getNames();
 		actorFound = false;
-		try {
-			InterfaceMessage message = queueMessage.take();
-			ActorInstance proxy = queueSenders.take();
-			ActorInstance sender = message.getSender();
-			
-			if (message instanceof QuitMessage)
+		for (int i = 0; i < names.length && !actorFound; i++)
+		{
+			if (context.lookUp(names[i]).getActor() == message.getSender())
 			{
-				send(message);
-				exitThread = true;
-			}
-			else {
-				ActorContext context = ActorContext.getInstance();
-				String[] names = context.getNames();
+				actorFound = true;
 				
-				for (int i = 0; i < names.length && !actorFound; i++)
-				{
-					if (context.lookUp(names[i]).getActor() == sender)
-					{
-						actorFound = true;
-						send(message);
-					}
-				}
-				if (actorFound == false) System.out.println("Este proxy/actor no existe en la lista");
+				super.sendToQueue(super.actor, message);
 			}
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
-	}
-
-    @Override
-	public void run() {
-    	while (!exitThread) {
-			processMessage();
-		}
+    	if (actorFound == false) System.out.println("El proxy no está en la lista.");
 	}
 }

@@ -49,8 +49,6 @@ public class ActorProxy implements ActorInstance{
 		ActorContext context = ActorContext.getInstance();
 		actor.sendToQueue(context.lookUp(name), message);
 	}
-	
-	
 
 	@Override
 	public void processMessage() {
@@ -107,5 +105,20 @@ public class ActorProxy implements ActorInstance{
 	public String toString ()
 	{
 		return "Soy un proxy y represento a "+name;
+	}
+
+	@Override
+	public void subscrib(Observer observer) {
+		actor.subscrib(observer);
+	}
+
+	@Override
+	public void unsubscrib(Observer observer) {
+		actor.unsubscrib(observer);
+	}
+
+	@Override
+	public void notifySubscrib(ActorListener actions, InterfaceMessage message) {
+		// TODO Auto-generated method stub
 	}
 }

@@ -30,11 +30,14 @@ public class AddInsultMessage implements InterfaceMessage{
 		return sender;
 	}
 	
-	/**
-	 * Getter de message
-	 * @return - message
-	 */
+	@Override
 	public String getMessage() {
 		return message;
+	}
+	
+	@Override
+	public void setMessage(String message) {
+		// TODO Auto-generated method stub
+		
 	}
 }

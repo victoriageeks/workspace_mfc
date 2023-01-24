@@ -23,26 +23,22 @@ public class Message implements InterfaceMessage{
 		this.message = message;
 	}
 	
+	@Override
 	public void setSender(ActorInstance sender) {
 		this.sender = sender;
 	}
 	
+	@Override
 	public ActorInstance getSender() {
 		return sender;
 	}
 	
-	/**
-	 * Getter de message
-	 * @return - message
-	 */
+	@Override
 	public String getMessage() {
 		return message;
 	}
-	
-	/**
-	 * Setter de message
-	 * @param message
-	 */
+
+	@Override
 	public void setMessage(String message) {
 		this.message = message;
 	}

@@ -24,4 +24,14 @@ public class QuitMessage implements InterfaceMessage {
 	public ActorInstance getSender() {
 		return sender;
 	}
+
+	@Override
+	public String getMessage() {
+		// TODO Auto-generated method stub
+		return "QuitMessage";
+	}
+	@Override
+	public void setMessage(String message) {
+		// TODO Auto-generated method stub
+	}
 }

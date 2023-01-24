@@ -1,4 +1,5 @@
 package Patterns;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -9,10 +10,14 @@ import Actores.*;
  * @author Marc Fonseca y Joel Lacambra
  *
  */
-public class ActorContext implements Runnable{
+public class ActorContext {
 	private static ActorContext actorContext = new ActorContext();
 	private Map<ActorProxy, ActorInstance> map = new HashMap<>();
 	
+	boolean virtual = false;
+	NormalThreadFactory normalFactory = new NormalThreadFactory();
+	VirtualThreadFactory virtualFactory = new VirtualThreadFactory();
+
 	/**
 	 * Constructor de ActorContext
 	 */
@@ -83,20 +88,50 @@ public class ActorContext implements Runnable{
 		if (actor instanceof RingActor)
 		{
 			RingActor.add(actorProxy);
+			map.put(actorProxy, actor);
+			
+			if (!isVirtual())
+			{
+				normalFactory.createThread(actor);
+			}
+			else {
+				virtualFactory.createThread(actor);
+			}
+			
 		}
-		if (actor instanceof PingPongActor)
+		else if (actor instanceof PingPongActor)
 		{
 			PingPongActor.add(actorProxy);
+			map.put(actorProxy, actor);
+			
+			if (!isVirtual())
+			{
+				normalFactory.createThread(actor);
+			}
+			else {
+				virtualFactory.createThread(actor);
+			}
 		}
-		
-		map.put(actorProxy, actor);
-		
-		Thread t = new Thread(actor);
-		t.start();
+		else {
+			map.put(actorProxy, actor);
+			
+			if (!isVirtual())
+			{
+				normalFactory.createThread(actor);
+			}
+			else {
+				virtualFactory.createThread(actor);
+			}
+		}  
 		
 		return actorProxy;
 	}
+	
+	public boolean isVirtual() {
+		return virtual;
+	}
 
-	@Override
-	public void run() {}
+	public void setVirtual(boolean virtual) {
+		this.virtual = virtual;
+	}
 }

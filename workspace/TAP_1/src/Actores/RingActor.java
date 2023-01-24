@@ -3,8 +3,6 @@ package Actores;
 import java.util.LinkedList;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
-
 import Messages.*;
 import Patterns.*;
 
@@ -15,16 +13,17 @@ import Patterns.*;
  */
 public class RingActor implements ActorInstance{
 	
-	
 	private BlockingQueue<InterfaceMessage> queueMessage = new LinkedBlockingQueue<>();
 	private BlockingQueue<ActorInstance> queueSenders = new LinkedBlockingQueue<>();
 	private boolean exitThread = false;
 	
 	private static LinkedList<ActorProxy> listProxy = new LinkedList<ActorProxy>();
+	private LinkedList<Observer> listObservers = new LinkedList<Observer>();
 	private static long start, end;
 	private static int contador = 0, maxContador = 100;
 	
 	private int position;
+	String name = "";
 	
 	// receives a message
 	public void sendToQueue(ActorInstance proxy, InterfaceMessage message) {
@@ -49,6 +48,7 @@ public class RingActor implements ActorInstance{
 		try {
 			InterfaceMessage message = queueMessage.take();
 			ActorInstance sender = queueSenders.take();	
+			notifySubscrib(ActorListener.RECEIVED, message);
 			
 			/* A QuitMessage forces the Actor to stop running */
 			if (message instanceof QuitMessage) {
@@ -81,6 +81,7 @@ public class RingActor implements ActorInstance{
 						//System.out.println("Vuelta "+contador+": Actor "+(position+1)+" envia mensaje a Actor 1 y acaba");
 						//System.out.println();
 						send(newMessage);
+						notifySubscrib(ActorListener.SEND, message);
 					}
 					else
 					{
@@ -88,6 +89,7 @@ public class RingActor implements ActorInstance{
 						//System.out.println();
 						message.setSender(listProxy.getFirst());
 						send(message);
+						notifySubscrib(ActorListener.SEND, message);
 					}
 				}
 				else 
@@ -95,6 +97,7 @@ public class RingActor implements ActorInstance{
 					message.setSender(listProxy.get(position+1));
 					//System.out.println("Vuelta "+(contador+1)+": Actor "+(position+1)+" envia mensaje a Actor "+(position+2));
 					send(message);
+					notifySubscrib(ActorListener.SEND, message);
 				}
 			}	
 		} catch (InterruptedException e) {
@@ -104,8 +107,16 @@ public class RingActor implements ActorInstance{
 	
 	@Override
 	public void run() {
-		while (!exitThread) {
-			processMessage();
+		try {
+			notifySubscrib(ActorListener.CREATION, new QuitMessage());
+			while (!exitThread) {
+				processMessage();
+			}
+			notifySubscrib(ActorListener.FINALIZATION, new QuitMessage());
+		}
+		catch (Exception e) {
+			notifySubscrib(ActorListener.INCORRECT_FINALIZATION, new QuitMessage());
+            throw new RuntimeException(e);
 		}
 	}
 	
@@ -126,5 +137,51 @@ public class RingActor implements ActorInstance{
 		contador = 0;
 		listProxy.clear();
 		maxContador = number;
+	}
+
+	@Override
+	public void subscrib(Observer observer) { 
+		if(!listObservers.contains(observer)) {
+			listObservers.add(observer);
+		}
+	}
+
+	@Override
+	public void unsubscrib(Observer observer) {
+		 if(listObservers.contains(observer)) {
+			 listObservers.remove(observer);
+         }
+	}
+
+	@Override
+	public void notifySubscrib(ActorListener actions, InterfaceMessage message) {
+		if (!name.equals("")) {
+			for(Observer o : listObservers){
+	            o.update(name, actions, message);
+	        }
+		}
+		else {
+			boolean found = false;
+			for (int i = 0; i < listProxy.size() && !found; i++) {
+				if (this == listProxy.get(i).getActor()) {
+					name = listProxy.get(i).getName();
+					found = true;
+				}
+			}
+			for(Observer o : listObservers){
+	            o.update(name, actions, message);
+	        }
+		}
+	}
+
+	@Override
+	public ActorInstance getActor() {
+		// TODO Auto-generated method stub
+		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return name;
 	}
 }

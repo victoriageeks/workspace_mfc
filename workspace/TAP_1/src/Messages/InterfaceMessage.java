@@ -20,4 +20,16 @@ public interface InterfaceMessage {
 	 * @return - actor
 	 */
 	public ActorInstance getSender();
+	
+	/**
+	 * Hetter de message
+	 * @return - message
+	 */
+	public String getMessage();
+	
+	/**
+	 * Setter de message
+	 * @param message
+	 */
+	public void setMessage(String message);
 }

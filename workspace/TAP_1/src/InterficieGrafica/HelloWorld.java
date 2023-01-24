@@ -18,7 +18,8 @@ public class HelloWorld extends javax.swing.JPanel {
         initComponents();
     }
   
-    @SuppressWarnings("unchecked")                         
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         panelDinamico = new javax.swing.JPanel();
@@ -51,7 +52,7 @@ public class HelloWorld extends javax.swing.JPanel {
         );
         addInsultPanelLayout.setVerticalGroup(
             addInsultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 482, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout panelDinamicoLayout = new javax.swing.GroupLayout(panelDinamico);
@@ -80,7 +81,7 @@ public class HelloWorld extends javax.swing.JPanel {
                         .addComponent(MensageBtn)
                         .addGap(18, 18, 18)
                         .addComponent(HelloWorldBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -101,7 +102,7 @@ public class HelloWorld extends javax.swing.JPanel {
      */
     private void HelloWorldBtnActionPerformed(java.awt.event.ActionEvent evt) {                                              
        Decorator d = new Decorator();
-       d.setSize(434, 161);
+       d.setSize(310, 482);
        d.setLocation(0, 0); 
        
        addInsultPanel.removeAll();

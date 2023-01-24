@@ -1,15 +1,16 @@
 package Actores;
 
-import Messages.*;;
+import Messages.*;
+import Patterns.*;;
 
 /**
  * 
  * @author Marc Fonseca y Joel Lacambra
  *
  */
-public interface ActorInstance extends Runnable {
+public interface ActorInstance extends Runnable, Publisher {
 	
-	// sens message to the defined actor
+	// sends message to the defined actor
 	/**
 	 * Metodo que envia un mensaje a un actor
 	 * @param message
@@ -29,4 +30,6 @@ public interface ActorInstance extends Runnable {
 	 * Metodo que procesa un mensaje
 	 */
 	public void processMessage();
+	
+	public ActorInstance getActor();
 }

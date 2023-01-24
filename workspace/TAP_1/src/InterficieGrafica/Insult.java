@@ -21,7 +21,8 @@ public class Insult extends javax.swing.JPanel {
         c = new Controlador();
     }
 
-    @SuppressWarnings("unchecked")                        
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         panelDinamico = new javax.swing.JPanel();
@@ -68,34 +69,36 @@ public class Insult extends javax.swing.JPanel {
         addInsultPanel.setLayout(addInsultPanelLayout);
         addInsultPanelLayout.setHorizontalGroup(
             addInsultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 434, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         addInsultPanelLayout.setVerticalGroup(
             addInsultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
+            .addGap(0, 128, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout panelDinamicoLayout = new javax.swing.GroupLayout(panelDinamico);
         panelDinamico.setLayout(panelDinamicoLayout);
         panelDinamicoLayout.setHorizontalGroup(
             panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelDinamicoLayout.createSequentialGroup()
-                .addComponent(addInsultPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
             .addGroup(panelDinamicoLayout.createSequentialGroup()
                 .addGroup(panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelDinamicoLayout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(MensageBtn))
                     .addGroup(panelDinamicoLayout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addGroup(panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(GetInsultMessage)
-                            .addComponent(AddInsult)))
+                            .addComponent(AddInsult))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addInsultPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelDinamicoLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(GetAllInsultsMessage)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelDinamicoLayout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(MensageBtn))
+                            .addGroup(panelDinamicoLayout.createSequentialGroup()
+                                .addGap(70, 70, 70)
+                                .addComponent(GetAllInsultsMessage)))
+                        .addGap(0, 307, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         panelDinamicoLayout.setVerticalGroup(
             panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,14 +106,15 @@ public class Insult extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addComponent(MensageBtn)
                 .addGap(18, 18, 18)
-                .addComponent(AddInsult, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(GetInsultMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(GetAllInsultsMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(addInsultPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGroup(panelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelDinamicoLayout.createSequentialGroup()
+                        .addComponent(AddInsult, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(GetInsultMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(GetAllInsultsMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addInsultPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(295, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

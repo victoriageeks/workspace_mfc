@@ -5,4 +5,6 @@ package Patterns;
  * @author Marc Fonseca y Joel Lacambra
  *
  */
-public class ActorListener {}
+public enum ActorListener {
+	CREATION, FINALIZATION, INCORRECT_FINALIZATION, RECEIVED, SEND
+}

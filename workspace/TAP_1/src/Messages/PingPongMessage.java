@@ -15,6 +15,7 @@ public class PingPongMessage implements InterfaceMessage{
 	 */
 	public PingPongMessage () {}
 	
+	@Override
 	public void setSender(ActorInstance sender) {
 		this.sender = sender;
 	}
@@ -22,5 +23,14 @@ public class PingPongMessage implements InterfaceMessage{
 	@Override
 	public ActorInstance getSender() {
 		return sender;
+	}
+
+	@Override
+	public String getMessage() {
+		return "PinPongMessage";
+	}
+	@Override
+	public void setMessage(String message) {
+		// TODO Auto-generated method stub
 	}
 }

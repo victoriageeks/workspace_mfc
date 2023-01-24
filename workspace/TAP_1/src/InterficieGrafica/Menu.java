@@ -1,8 +1,7 @@
 package InterficieGrafica;
 
 import java.awt.BorderLayout;
-
-
+import java.io.PrintStream;
 import java.awt.BorderLayout;
 
 /**
@@ -26,7 +25,8 @@ public class Menu extends javax.swing.JFrame {
        c = new Controlador();
     }
 
-    @SuppressWarnings("unchecked")                          
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         PanelMenu = new javax.swing.JPanel();
@@ -37,7 +37,14 @@ public class Menu extends javax.swing.JFrame {
         EscogeActorLabel = new javax.swing.JLabel();
         ListarActoresBtn = new javax.swing.JButton();
         PanelDinamico = new javax.swing.JPanel();
+        Consola = new javax.swing.JScrollPane();
+        TextoConsola = new javax.swing.JTextArea();
 
+        PrintStream printStream = new PrintStream(new CustomOutputStream(TextoConsola));
+        
+        System.setOut(printStream);
+        System.setErr(printStream);
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         PanelMenu.setBackground(new java.awt.Color(204, 204, 255));
@@ -96,8 +103,13 @@ public class Menu extends javax.swing.JFrame {
         );
         PanelDinamicoLayout.setVerticalGroup(
             PanelDinamicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 340, Short.MAX_VALUE)
         );
+
+        TextoConsola.setEditable(false);
+        TextoConsola.setColumns(20);
+        TextoConsola.setRows(5);
+        Consola.setViewportView(TextoConsola);
 
         javax.swing.GroupLayout PanelMenuLayout = new javax.swing.GroupLayout(PanelMenu);
         PanelMenu.setLayout(PanelMenuLayout);
@@ -117,28 +129,33 @@ public class Menu extends javax.swing.JFrame {
                                 .addComponent(RingActorBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(PingPongActorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(38, 38, 38)
-                .addComponent(PanelDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PanelDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Consola, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
         PanelMenuLayout.setVerticalGroup(
             PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelMenuLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(PanelDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelMenuLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(EscogeActorLabel)
-                .addGap(26, 26, 26)
-                .addComponent(HelloWorldActorBtn)
-                .addGap(27, 27, 27)
-                .addComponent(InsultActorBtn)
-                .addGap(28, 28, 28)
-                .addComponent(RingActorBtn)
-                .addGap(31, 31, 31)
-                .addComponent(PingPongActorBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
-                .addComponent(ListarActoresBtn)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMenuLayout.createSequentialGroup()
+                .addGroup(PanelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelMenuLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(PanelDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Consola))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelMenuLayout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(EscogeActorLabel)
+                        .addGap(26, 26, 26)
+                        .addComponent(HelloWorldActorBtn)
+                        .addGap(27, 27, 27)
+                        .addComponent(InsultActorBtn)
+                        .addGap(28, 28, 28)
+                        .addComponent(RingActorBtn)
+                        .addGap(31, 31, 31)
+                        .addComponent(PingPongActorBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                        .addComponent(ListarActoresBtn)))
                 .addGap(47, 47, 47))
         );
 
@@ -157,7 +174,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>                       
 
     /**
      * Metodo que cambia el panel dinámico de Menu con informacion de InsultActor
@@ -236,7 +253,7 @@ public class Menu extends javax.swing.JFrame {
        String[] listarActores = c.listarActores();
        for (int i = 0; i < listarActores.length; i++)
        {
-    	   la.getjTextArea().append(listarActores[i]+"\n");
+    	   la.getJTextArea1().append(listarActores[i]+"\n");
        }
     }                                                
 
@@ -267,7 +284,8 @@ public class Menu extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify                     
+     // Variables declaration - do not modify                     
+    private javax.swing.JScrollPane Consola;
     private javax.swing.JLabel EscogeActorLabel;
     private javax.swing.JButton HelloWorldActorBtn;
     private javax.swing.JButton InsultActorBtn;
@@ -276,5 +294,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel PanelMenu;
     private javax.swing.JButton PingPongActorBtn;
     private javax.swing.JButton RingActorBtn;
-    // End of variables declaration                   
+    private javax.swing.JTextArea TextoConsola;
+    // End of variables declaration                  
 }

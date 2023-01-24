@@ -10,7 +10,7 @@ public class PingPong extends javax.swing.JPanel {
 	private static final long serialVersionUID = 1L;
 	
 	private final Controlador c;
-	private int i = 0;
+	private static int i = 0;
 	
 	/**
 	 * Constructor de PingPong
@@ -81,7 +81,7 @@ public class PingPong extends javax.swing.JPanel {
     * Metodo que se activa al presionar StartPingPong y pone en march el PingPong
     * @param evt
     */
-   private void StartPinPongBtnActionPerformed(java.awt.event.ActionEvent evt) {                                                
+   private void StartPinPongBtnActionPerformed(java.awt.event.ActionEvent evt) {      
        String name = "PingPong "+(++i);
        String tipo = "PingPong";
        c.crearActor(name, tipo, 0, "");

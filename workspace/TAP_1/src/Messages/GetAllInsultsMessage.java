@@ -19,7 +19,6 @@ public class GetAllInsultsMessage implements InterfaceMessage{
 	@Override
 	public void setSender(ActorInstance sender) {
 		this.sender = sender;
-		
 	}
 
 	@Override
@@ -33,5 +32,16 @@ public class GetAllInsultsMessage implements InterfaceMessage{
 	 */
 	public void add (InterfaceMessage message) {
 		insultList.add(message);
+	}
+
+	@Override
+	public String getMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setMessage(String message) {
+		// TODO Auto-generated method stub
+		
 	}
 }

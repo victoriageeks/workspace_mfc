@@ -15,6 +15,7 @@ public class RingMessage implements InterfaceMessage{
 	 */
 	public RingMessage () {}
 	
+	@Override
 	public void setSender(ActorInstance sender) {
 		this.sender = sender;
 	}
@@ -22,5 +23,15 @@ public class RingMessage implements InterfaceMessage{
 	@Override
 	public ActorInstance getSender() {
 		return sender;
+	}
+
+	@Override
+	public String getMessage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setMessage(String message) {
+		// TODO Auto-generated method stub
 	}
 }
